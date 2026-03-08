@@ -76,11 +76,8 @@ public class HRJobDetailActivity extends BaseActivity {
             skills.add(cursor.getString(2));
             resumes.add(cursor.getString(3));
         }
-
         cursor.close();
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         recyclerView.setAdapter(
                 new HRApplicantAdapter(
                         this,

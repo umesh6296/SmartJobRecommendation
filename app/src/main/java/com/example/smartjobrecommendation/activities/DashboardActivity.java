@@ -29,27 +29,20 @@ public class DashboardActivity extends BaseActivity {
     Button postJobBtn;
     ImageView profileMenu;
     TextView profileName;
-
-
     EditText searchEditText;
     ImageView searchButton;
     LinearLayout searchLayout;
-
     DatabaseHelper db;
-
     String role;
     int userId;
     String userName = "";
-
     ArrayList<String> jobList = new ArrayList<>();
     ArrayList<Integer> jobIds = new ArrayList<>();
     ArrayList<String> jobDescList = new ArrayList<>();
     ArrayList<String> jobSkillsList = new ArrayList<>();
     ArrayList<String> jobExpList = new ArrayList<>();
     ArrayList<String> jobSalaryList = new ArrayList<>();
-
     JobAdapter adapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +62,6 @@ public class DashboardActivity extends BaseActivity {
         finish();
         super.onBackPressed();
     }
-
     private void initViews() {
         recyclerView = findViewById(R.id.jobRecycler);
         postJobBtn = findViewById(R.id.postJobBtn);
