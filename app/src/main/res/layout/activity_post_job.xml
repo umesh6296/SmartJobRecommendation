@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#F4F6FB"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Title -->
+        <TextView
+            android:text="Post New Job"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#2E3A59"
+            android:layout_marginBottom="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <!-- Job Title -->
+        <EditText
+            android:id="@+id/jobTitle"
+            style="@style/StyledEditText"
+            android:hint="Job Title"
+            android:importantForAutofill="no"/>
+
+        <!-- Description -->
+        <EditText
+            android:id="@+id/jobDesc"
+            style="@style/StyledEditText"
+            android:hint="Job Description"
+            android:minLines="4"
+            android:gravity="top"
+            android:inputType="textMultiLine"
+            android:importantForAutofill="no"/>
+
+        <!-- Skills -->
+        <EditText
+            android:id="@+id/jobSkills"
+            style="@style/StyledEditText"
+            android:hint="Required Skills (comma separated)"
+            android:importantForAutofill="no"/>
+
+        <!-- Experience -->
+        <EditText
+            android:id="@+id/jobExp"
+            style="@style/StyledEditText"
+            android:hint="Required Experience (Years)"
+            android:inputType="number"
+            android:importantForAutofill="no"/>
+
+        <!-- Salary -->
+        <EditText
+            android:id="@+id/jobSalary"
+            style="@style/StyledEditText"
+            android:hint="Salary (₹)"
+            android:inputType="number"
+            android:importantForAutofill="no"/>
+
+        <!-- Mandatory Degree Spinner -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mandatory Degree"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#2E3A59"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp"/>
+
+        <Spinner
+            android:id="@+id/degreeSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/edittext_bg"
+            android:padding="8dp"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Post Button -->
+        <Button
+            android:id="@+id/postBtn"
+            android:text="Post Job"
+            style="@style/PrimaryButtonStyle"
+            android:layout_marginTop="24dp"/>
+
+    </LinearLayout>
+
+</ScrollView>

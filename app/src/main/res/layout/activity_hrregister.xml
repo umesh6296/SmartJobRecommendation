@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#F4F6FB"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Title -->
+        <TextView
+            android:text="Create HR Account"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#2E3A59"
+            android:layout_marginBottom="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <!-- Name -->
+        <EditText
+            android:id="@+id/hrName"
+            style="@style/StyledEditText"
+            android:hint="Your Name" />
+
+        <!-- Company Name -->
+        <EditText
+            android:id="@+id/companyName"
+            style="@style/StyledEditText"
+            android:hint="Company Name" />
+
+        <!-- About Company -->
+        <EditText
+            android:id="@+id/aboutCompany"
+            style="@style/StyledEditText"
+            android:hint="About Company"
+            android:minLines="3"
+            android:gravity="top"/>
+
+        <!-- Phone -->
+        <EditText
+            android:id="@+id/hrPhone"
+            style="@style/StyledEditText"
+            android:hint="Phone Number"
+            android:inputType="phone" />
+
+        <!-- Email -->
+        <EditText
+            android:id="@+id/hrEmail"
+            style="@style/StyledEditText"
+            android:hint="Email"
+            android:inputType="textEmailAddress" />
+
+        <!-- Password -->
+        <EditText
+            android:id="@+id/hrPassword"
+            style="@style/StyledEditText"
+            android:hint="Password"
+            android:inputType="textPassword" />
+
+        <!-- Spinner -->
+        <Spinner
+            android:id="@+id/companyTypeSpinner"
+            android:layout_marginTop="12dp"
+            android:padding="12dp"
+            android:background="@drawable/edittext_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- Register Button -->
+        <Button
+            android:id="@+id/hrRegisterBtn"
+            android:text="Register"
+            style="@style/PrimaryButtonStyle"
+            android:layout_marginTop="20dp"/>
+
+    </LinearLayout>
+
+</ScrollView>

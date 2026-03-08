@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:background="#F0F0F0"
+    android:layout_marginVertical="4dp">
+
+    <EditText
+        android:id="@+id/etDegree"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Degree Name (e.g., B.Tech, M.Sc)"
+        android:padding="12dp"
+        android:background="@drawable/edittext_bg"
+        android:layout_marginBottom="8dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/etStartYear"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Start Year"
+            android:inputType="number"
+            android:padding="12dp"
+            android:background="@drawable/edittext_bg"
+            android:layout_marginEnd="4dp"/>
+
+        <EditText
+            android:id="@+id/etEndYear"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="End Year"
+            android:inputType="number"
+            android:padding="12dp"
+            android:background="@drawable/edittext_bg"
+            android:layout_marginStart="4dp"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnRemoveQualification"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Remove"
+        android:textColor="#FF4444"
+        android:background="@android:color/transparent"
+        android:layout_marginTop="4dp"/>
+
+</LinearLayout>

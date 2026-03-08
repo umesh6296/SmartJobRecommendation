@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#F4F6FB"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingTop="24dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Top Section with Profile Menu and Post Button -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp">
+
+        <!-- Profile Menu (Three Dots) - Left side -->
+        <ImageView
+            android:id="@+id/profileMenu"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_menu_black"
+            android:padding="8dp"
+            android:scaleType="fitCenter"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:tint="#2E3A59"/>
+
+        <!-- User Name -->
+        <TextView
+            android:id="@+id/profileName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/profileMenu"
+            android:layout_marginStart="12dp"
+            android:layout_centerVertical="true"
+            android:text="Welcome!"
+            android:textSize="16sp"
+            android:textColor="#2E3A59"
+            android:textStyle="bold"
+            android:visibility="visible"
+            android:maxWidth="180dp"
+            android:singleLine="true"
+            android:ellipsize="end"/>
+
+        <!-- Post Job Button - Right side -->
+        <Button
+            android:id="@+id/postJobBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:text="Post Job"
+            android:textSize="14sp"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/button_primary_bg"
+            android:visibility="gone"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"/>
+
+    </RelativeLayout>
+
+    <!-- Search Section -->
+    <LinearLayout
+        android:id="@+id/searchLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/search_background"
+        android:padding="4dp">
+
+        <EditText
+            android:id="@+id/searchEditText"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:hint="Search jobs by title, skills, or description..."
+            android:textSize="14sp"
+            android:paddingStart="16dp"
+            android:paddingEnd="8dp"
+            android:background="@android:color/transparent"
+            android:singleLine="true"/>
+
+        <ImageView
+            android:id="@+id/searchButton"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/ic_search_black"
+            android:padding="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:tint="#4A6CF7"
+            android:background="@android:color/transparent"/>
+
+    </LinearLayout>
+
+    <!-- Job List -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/jobRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp"/>
+
+</LinearLayout>
