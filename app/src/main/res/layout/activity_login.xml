@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#F4F6FB"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,62 +8,208 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:gravity="center"
+        android:gravity="center_horizontal"
         android:padding="24dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
 
-        <!-- App Title -->
+        <!-- Logo with Lightning Bolt -->
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/circle_gradient"
+            android:gravity="center"
+            android:layout_marginBottom="12dp"
+            android:elevation="8dp">
+
+            <TextView
+                android:text="⚡"
+                android:textSize="60sp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <!-- App Name -->
         <TextView
-            android:text="Welcome 👋"
-            android:textSize="24sp"
+            android:text="JOB SYNC"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="#2E3A59"
+            android:letterSpacing="0.1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <!-- Tagline -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="32dp"
+            android:background="#F0F3FF"
+            android:paddingVertical="8dp"
+            android:paddingHorizontal="20dp">
+
+            <TextView
+                android:text="✦"
+                android:textSize="16sp"
+                android:textColor="#4A6CF7"
+                android:layout_marginEnd="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:text="Sync Your Career"
+                android:textSize="16sp"
+                android:textStyle="italic"
+                android:textColor="#666666"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:text="✦"
+                android:textSize="16sp"
+                android:textColor="#4A6CF7"
+                android:layout_marginStart="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <!-- Welcome Text -->
+        <TextView
+            android:text="Welcome Back!"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="#2E3A59"
             android:layout_marginBottom="24dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <!-- Card Container -->
+        <!-- Login Card -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="18dp"
+            app:cardCornerRadius="24dp"
             app:cardElevation="8dp"
-            xmlns:app="http://schemas.android.com/apk/res-auto">
+            app:cardBackgroundColor="#FFFFFF">
 
             <LinearLayout
                 android:orientation="vertical"
-                android:padding="20dp"
+                android:padding="24dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <!-- Email Field -->
+                <TextView
+                    android:text="Email"
+                    android:textSize="14sp"
+                    android:textColor="#666666"
+                    android:layout_marginBottom="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
                 <EditText
                     android:id="@+id/loginEmail"
-                    style="@style/StyledEditText"
-                    android:hint="Email"
-                    android:inputType="textEmailAddress"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:hint="Enter your email"
+                    android:inputType="textEmailAddress"
+                    android:background="@drawable/edittext_bg"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:layout_marginBottom="16dp"/>
+
+                <!-- Password Field -->
+                <TextView
+                    android:text="Password"
+                    android:textSize="14sp"
+                    android:textColor="#666666"
+                    android:layout_marginBottom="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
                 <EditText
                     android:id="@+id/loginPassword"
-                    style="@style/StyledEditText"
-                    android:hint="Password"
-                    android:inputType="textPassword"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:hint="Enter your password"
+                    android:inputType="textPassword"
+                    android:background="@drawable/edittext_bg"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:layout_marginBottom="8dp"/>
 
+
+
+                <!-- Login Button -->
                 <Button
                     android:id="@+id/loginButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
                     android:text="Login"
-                    style="@style/PrimaryButtonStyle"
-                    android:layout_marginTop="16dp"/>
+                    android:textSize="16sp"
+                    android:textColor="#FFFFFF"
+                    android:background="@drawable/button_primary_bg"
+                    android:layout_marginBottom="12dp"/>
 
+                <!-- OR Divider -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginVertical="16dp">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="1"
+                        android:background="#E0E0E0"/>
+
+                    <TextView
+                        android:text="OR"
+                        android:textSize="14sp"
+                        android:textColor="#999999"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="1"
+                        android:background="#E0E0E0"/>
+
+                </LinearLayout>
+
+                <!-- Register Button -->
                 <Button
                     android:id="@+id/registerButton"
-                    android:text="Create Account"
-                    style="@style/SecondaryButtonStyle"
-                    android:layout_marginTop="10dp"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="Create New Account"
+                    android:textSize="16sp"
+                    android:textColor="#4A6CF7"
+                    android:background="@drawable/button_secondary_bg"/>
 
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
+        <!-- Terms Text -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="By continuing, you agree to our Terms of Service and Privacy Policy"
+            android:textSize="12sp"
+            android:textColor="#999999"
+            android:gravity="center"
+            android:layout_marginTop="24dp"/>
 
     </LinearLayout>
 
