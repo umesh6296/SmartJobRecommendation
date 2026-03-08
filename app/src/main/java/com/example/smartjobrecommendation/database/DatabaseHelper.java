@@ -123,19 +123,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 new String[]{String.valueOf(userId), String.valueOf(otherUserId), String.valueOf(jobId)});
         db.close();
     }
-    public int getUnreadMessageCount(int userId) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM chats WHERE receiverId=? AND isRead=0",
-                new String[]{String.valueOf(userId)});
 
-        int count = 0;
-        if (cursor.moveToFirst()) {
-            count = cursor.getInt(0);
-        }
-        cursor.close();
-        db.close();
-        return count;
-    }
 
     public int getHrIdForJob(int jobId) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -319,20 +307,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // GET APPLICATION STATUS
-    public String getApplicationStatus(int jobId, int userId) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(
-                "SELECT status FROM applications WHERE jobId=? AND userId=?",
-                new String[]{String.valueOf(jobId), String.valueOf(userId)});
 
-        String status = "Not Applied";
-        if (cursor.moveToFirst()) {
-            status = cursor.getString(0);
-        }
-        cursor.close();
-        db.close();
-        return status;
-    }
 
     // UPDATE USER
     public boolean updateUser(int userId,

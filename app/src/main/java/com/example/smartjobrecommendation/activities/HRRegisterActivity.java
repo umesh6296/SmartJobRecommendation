@@ -33,7 +33,6 @@ public class HRRegisterActivity extends BaseActivity {
 
         db = new DatabaseHelper(this);
 
-        // Spinner Data
         String[] types = {"Select Company Type", "IT", "Non-IT", "Healthcare", "Education", "Finance"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this,
@@ -56,7 +55,6 @@ public class HRRegisterActivity extends BaseActivity {
         String hrPass = password.getText().toString().trim();
         String companyType = companyTypeSpinner.getSelectedItem().toString();
 
-        // Validations
         if (TextUtils.isEmpty(hrName)) {
             name.setError("Name required");
             name.requestFocus();

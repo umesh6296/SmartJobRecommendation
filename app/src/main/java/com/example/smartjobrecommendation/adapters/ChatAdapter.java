@@ -61,7 +61,6 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
         String time = sdf.format(new Date(message.getTimestamp()));
         holder.timeText.setText(time);
 
-        // Show sender name for received messages (optional)
         if (getItemViewType(position) == VIEW_TYPE_RECEIVED) {
             if (holder.senderName != null) {
                 holder.senderName.setText(message.getSenderName());
@@ -81,7 +80,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
             super(itemView);
             messageText = itemView.findViewById(R.id.messageText);
             timeText = itemView.findViewById(R.id.timeText);
-            senderName = itemView.findViewById(R.id.senderName); // Optional
+            senderName = itemView.findViewById(R.id.senderName);
         }
     }
 }

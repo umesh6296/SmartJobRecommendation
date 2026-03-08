@@ -77,7 +77,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
                 jobSalaryList.get(position) : "";
 
         if (role != null && role.equals("JobSeeker")) {
-            // Job Seeker View - with match percentage
+
             String userSkills = db.getUserSkills(userId);
             String jobSkills = db.getJobSkills(jobId);
             int match = SkillMatcher.calculateMatch(userSkills, jobSkills);

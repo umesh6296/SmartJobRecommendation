@@ -44,7 +44,7 @@ public class ChatActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        // Get intent data
+
         currentUserId = getIntent().getIntExtra("currentUserId", -1);
         otherUserId = getIntent().getIntExtra("otherUserId", -1);
         otherUserName = getIntent().getStringExtra("otherUserName");
@@ -61,7 +61,7 @@ public class ChatActivity extends BaseActivity {
         setupChat();
         loadMessages();
 
-        // Auto-refresh every 2 seconds
+
         refreshRunnable = new Runnable() {
             @Override
             public void run() {
@@ -88,7 +88,7 @@ public class ChatActivity extends BaseActivity {
     }
 
     private void setupChat() {
-        // Mark previous messages as read
+
         db.markMessagesAsRead(currentUserId, otherUserId, jobId);
     }
 
@@ -108,7 +108,7 @@ public class ChatActivity extends BaseActivity {
                 message.setJobId(cursor.getInt(cursor.getColumnIndexOrThrow("jobId")));
                 message.setRead(cursor.getInt(cursor.getColumnIndexOrThrow("isRead")) == 1);
 
-                // Get sender name
+
                 if (message.getSenderId() == otherUserId) {
                     message.setSenderName(otherUserName);
                 } else {
@@ -122,12 +122,12 @@ public class ChatActivity extends BaseActivity {
 
         adapter.notifyDataSetChanged();
 
-        // Scroll to bottom
+
         if (messageList.size() > 0) {
             recyclerView.scrollToPosition(messageList.size() - 1);
         }
 
-        // Mark new messages as read
+
         db.markMessagesAsRead(currentUserId, otherUserId, jobId);
     }
 

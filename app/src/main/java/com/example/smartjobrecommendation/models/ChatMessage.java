@@ -13,14 +13,7 @@ public class ChatMessage {
     public ChatMessage() {
     }
 
-    public ChatMessage(int senderId, int receiverId, String message, int jobId) {
-        this.senderId = senderId;
-        this.receiverId = receiverId;
-        this.message = message;
-        this.timestamp = System.currentTimeMillis();
-        this.jobId = jobId;
-        this.isRead = false;
-    }
+
 
     // Getters and Setters
     public int getChatId() { return chatId; }

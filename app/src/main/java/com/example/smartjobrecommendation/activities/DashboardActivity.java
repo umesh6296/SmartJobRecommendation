@@ -63,7 +63,6 @@ public class DashboardActivity extends BaseActivity {
     }
     @Override
     public void onBackPressed() {
-        // Navigate to LoginActivity instead of exiting app
         Intent intent = new Intent(this, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
@@ -77,7 +76,6 @@ public class DashboardActivity extends BaseActivity {
         profileMenu = findViewById(R.id.profileMenu);
         profileName = findViewById(R.id.profileName);
 
-        // Initialize search views
         searchEditText = findViewById(R.id.searchEditText);
         searchButton = findViewById(R.id.searchButton);
         searchLayout = findViewById(R.id.searchLayout);
@@ -126,10 +124,8 @@ public class DashboardActivity extends BaseActivity {
             }
         });
 
-        // Profile name click - same as menu click
         profileName.setOnClickListener(v -> profileMenu.performClick());
 
-        // Post job button
         postJobBtn.setOnClickListener(v -> {
             Intent intent = new Intent(this, PostJobActivity.class);
             intent.putExtra("userId", userId);
@@ -138,18 +134,16 @@ public class DashboardActivity extends BaseActivity {
     }
 
     private void setupSearch() {
-        // Search button click listener
         searchButton.setOnClickListener(v -> {
             String query = searchEditText.getText().toString().trim();
             if (!query.isEmpty()) {
                 searchJobs(query);
             } else {
-                // Agar search empty hai to saari jobs dikhao
                 loadAllJobs();
             }
         });
 
-        // Clear search when text is empty
+
         searchEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -311,10 +305,8 @@ public class DashboardActivity extends BaseActivity {
 
         if (resultCode == RESULT_OK) {
             if (data != null && data.getBooleanExtra("jobApplied", false)) {
-                // Job apply hua hai, jobs reload karo
                 loadAllJobs();
 
-                // Optional: Applied jobs count update karne ke liye profile reload karo
                 loadUserData();
             }
         }
@@ -324,6 +316,6 @@ public class DashboardActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         loadUserData();
-        loadAllJobs(); // Refresh jobs when returning
+        loadAllJobs();
     }
 }

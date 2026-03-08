@@ -102,9 +102,9 @@ public class HRApplicantAdapter extends RecyclerView.Adapter<HRApplicantAdapter.
             holder.rejectBtn.setEnabled(false);
         });
 
-        // Chat Button - HR candidate se chat kar sakta hai
+        // Chat Button
         holder.chatBtn.setOnClickListener(v -> {
-            // Get HR ID (current user) from context
+
             int hrId = ((HRApplicantActivity)context).getUserId();
 
             Intent intent = new Intent(context, ChatActivity.class);
@@ -124,7 +124,7 @@ public class HRApplicantAdapter extends RecyclerView.Adapter<HRApplicantAdapter.
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView nameText, matchText;
         Button resumeBtn, shortlistBtn, rejectBtn;
-        ImageButton chatBtn; // New chat button
+        ImageButton chatBtn;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -133,7 +133,7 @@ public class HRApplicantAdapter extends RecyclerView.Adapter<HRApplicantAdapter.
             resumeBtn = itemView.findViewById(R.id.resumeBtn);
             shortlistBtn = itemView.findViewById(R.id.shortlistBtn);
             rejectBtn = itemView.findViewById(R.id.rejectBtn);
-            chatBtn = itemView.findViewById(R.id.chatBtn); // Initialize chat button
+            chatBtn = itemView.findViewById(R.id.chatBtn);
         }
     }
 }

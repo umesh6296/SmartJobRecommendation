@@ -96,7 +96,6 @@ public class HRProfileActivity extends BaseActivity {
             jobTitles.clear();
             jobIds.clear();
 
-            // Create ArrayLists for all job details
             ArrayList<String> jobDescList = new ArrayList<>();
             ArrayList<String> jobSkillsList = new ArrayList<>();
             ArrayList<String> jobExpList = new ArrayList<>();
