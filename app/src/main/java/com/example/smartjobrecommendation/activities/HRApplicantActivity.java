@@ -16,6 +16,7 @@ public class HRApplicantActivity extends BaseActivity {
     RecyclerView recyclerView;
     DatabaseHelper db;
     int jobId;
+    int userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,7 @@ public class HRApplicantActivity extends BaseActivity {
 
         db = new DatabaseHelper(this);
         jobId = getIntent().getIntExtra("jobId", -1);
+        userId = getIntent().getIntExtra("userId", -1);
 
         loadJobDetails();
         loadApplicants();
@@ -68,10 +70,15 @@ public class HRApplicantActivity extends BaseActivity {
             resumes.add(cursor.getString(3));
         }
 
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(
                 new com.example.smartjobrecommendation.adapters.HRApplicantAdapter(
                         this, jobId, userIds, names, skills, resumes
                 ));
     }
+    public int getUserId() {
+        return userId;
+    }
+
 }

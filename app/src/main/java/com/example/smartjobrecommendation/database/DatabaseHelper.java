@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "JobPortal.db";
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 5;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -18,6 +18,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
+        db.execSQL("CREATE TABLE chats(" +
+                "chatId INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "senderId INTEGER," +
+                "receiverId INTEGER," +
+                "message TEXT," +
+                "timestamp LONG," +
+                "jobId INTEGER," +
+                "isRead INTEGER DEFAULT 0)");
 
         // USER TABLE
         db.execSQL("CREATE TABLE users(" +
@@ -58,13 +67,102 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // Drop all tables and recreate (simplest approach)
-        db.execSQL("DROP TABLE IF EXISTS users");
-        db.execSQL("DROP TABLE IF EXISTS jobs");
-        db.execSQL("DROP TABLE IF EXISTS applications");
-        onCreate(db);
+        if (oldVersion < 5) {
+            db.execSQL("CREATE TABLE chats(" +
+                    "chatId INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "senderId INTEGER," +
+                    "receiverId INTEGER," +
+                    "message TEXT," +
+                    "timestamp LONG," +
+                    "jobId INTEGER," +
+                    "isRead INTEGER DEFAULT 0)");
+        } else {
+            db.execSQL("DROP TABLE IF EXISTS users");
+            db.execSQL("DROP TABLE IF EXISTS jobs");
+            db.execSQL("DROP TABLE IF EXISTS applications");
+            db.execSQL("DROP TABLE IF EXISTS chats");
+            onCreate(db);
+        }
     }
 
+    public boolean sendMessage(int senderId, int receiverId, String message, int jobId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put("senderId", senderId);
+        cv.put("receiverId", receiverId);
+        cv.put("message", message);
+        cv.put("timestamp", System.currentTimeMillis());
+        cv.put("jobId", jobId);
+        cv.put("isRead", 0);
+
+        long result = db.insert("chats", null, cv);
+        db.close();
+        return result != -1;
+    }
+    public Cursor getChatHistory(int user1Id, int user2Id, int jobId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT * FROM chats WHERE " +
+                "(senderId=? AND receiverId=? AND jobId=?) OR " +
+                "(senderId=? AND receiverId=? AND jobId=?) " +
+                "ORDER BY timestamp ASC";
+
+        String[] args = {String.valueOf(user1Id), String.valueOf(user2Id), String.valueOf(jobId),
+                String.valueOf(user2Id), String.valueOf(user1Id), String.valueOf(jobId)};
+
+        return db.rawQuery(query, args);
+    }
+    public void markMessagesAsRead(int userId, int otherUserId, int jobId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("isRead", 1);
+
+        db.update("chats", cv,
+                "receiverId=? AND senderId=? AND jobId=? AND isRead=0",
+                new String[]{String.valueOf(userId), String.valueOf(otherUserId), String.valueOf(jobId)});
+        db.close();
+    }
+    public int getUnreadMessageCount(int userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM chats WHERE receiverId=? AND isRead=0",
+                new String[]{String.valueOf(userId)});
+
+        int count = 0;
+        if (cursor.moveToFirst()) {
+            count = cursor.getInt(0);
+        }
+        cursor.close();
+        db.close();
+        return count;
+    }
+
+    public int getHrIdForJob(int jobId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT hrId FROM jobs WHERE jobId=?",
+                new String[]{String.valueOf(jobId)});
+
+        int hrId = -1;
+        if (cursor.moveToFirst()) {
+            hrId = cursor.getInt(0);
+        }
+        cursor.close();
+        db.close();
+        return hrId;
+    }
+    public String getUserNameById(int userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT name FROM users WHERE id=?",
+                new String[]{String.valueOf(userId)});
+
+        String name = "User";
+        if (cursor.moveToFirst()) {
+            name = cursor.getString(0);
+        }
+        cursor.close();
+        db.close();
+        return name;
+    }
     // ---------------- REGISTER USER (with qualificationDetails) ----------------
     public boolean registerUser(String role, String name, String companyName,
                                 String aboutCompany, String phone,

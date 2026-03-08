@@ -25,9 +25,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartJobRecommendation"
         tools:targetApi="31">
-        <activity
-            android:name=".activities.ChatActivity"
-            android:exported="false" />
+
         <activity
             android:name=".activities.BaseActivity"
             android:exported="false" />
@@ -55,6 +53,10 @@
             android:name=".activities.DashboardActivity"
             android:exported="false"
             android:parentActivityName=".activities.LoginActivity" />
+        <activity
+            android:name=".activities.ChatActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".activities.JobSeekerRegisterActivity"
             android:exported="false"

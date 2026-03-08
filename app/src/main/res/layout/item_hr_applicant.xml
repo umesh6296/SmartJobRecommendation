@@ -57,6 +57,15 @@
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="42dp"/>
+            <ImageButton
+                android:id="@+id/chatBtn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_chat"
+                android:background="@drawable/button_primary_bg"
+                android:padding="8dp"
+                android:tint="#FFFFFF"
+                android:layout_marginStart="4dp"/>
         </LinearLayout>
 
     </LinearLayout>

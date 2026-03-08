@@ -71,6 +71,16 @@
             android:textColor="#FFFFFF"
             android:background="@drawable/button_primary_bg"/>
 
+        <Button
+            android:id="@+id/chatBtn"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Chat with HR"
+            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/button_secondary_bg"
+            android:layout_marginTop="8dp"/>
+
     </LinearLayout>
 
 </ScrollView>

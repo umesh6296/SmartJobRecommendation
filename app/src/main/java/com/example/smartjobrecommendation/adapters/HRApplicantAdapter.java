@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartjobrecommendation.R;
+import com.example.smartjobrecommendation.activities.ChatActivity;
+import com.example.smartjobrecommendation.activities.HRApplicantActivity;
 import com.example.smartjobrecommendation.database.DatabaseHelper;
 import com.example.smartjobrecommendation.utils.SkillMatcher;
 
@@ -46,28 +49,24 @@ public class HRApplicantAdapter extends RecyclerView.Adapter<HRApplicantAdapter.
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         View view = LayoutInflater.from(context)
                 .inflate(R.layout.item_hr_applicant, parent, false);
-
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         int userId = userIds.get(position);
         String name = names.get(position);
         String userSkills = skills.get(position);
+        String resume = resumes.get(position);
 
         String jobSkills = db.getJobSkills(jobId);
         int match = SkillMatcher.calculateMatch(userSkills, jobSkills);
 
         holder.nameText.setText(name);
 
-        holder.matchText.setText(
-                match + "% - " + (match >= 70 ? "High Match" : "Low Match")
-        );
+        holder.matchText.setText(match + "% - " + (match >= 70 ? "High Match" : "Low Match"));
 
         if (match >= 70) {
             holder.matchText.setTextColor(Color.parseColor("#2ECC71"));
@@ -79,7 +78,7 @@ public class HRApplicantAdapter extends RecyclerView.Adapter<HRApplicantAdapter.
         holder.resumeBtn.setOnClickListener(v -> {
             try {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setDataAndType(Uri.parse(resumes.get(position)), "application/pdf");
+                intent.setDataAndType(Uri.parse(resume), "application/pdf");
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             } catch (Exception e) {
@@ -102,6 +101,19 @@ public class HRApplicantAdapter extends RecyclerView.Adapter<HRApplicantAdapter.
             holder.shortlistBtn.setEnabled(false);
             holder.rejectBtn.setEnabled(false);
         });
+
+        // Chat Button - HR candidate se chat kar sakta hai
+        holder.chatBtn.setOnClickListener(v -> {
+            // Get HR ID (current user) from context
+            int hrId = ((HRApplicantActivity)context).getUserId();
+
+            Intent intent = new Intent(context, ChatActivity.class);
+            intent.putExtra("currentUserId", hrId);
+            intent.putExtra("otherUserId", userId);
+            intent.putExtra("otherUserName", name);
+            intent.putExtra("jobId", jobId);
+            context.startActivity(intent);
+        });
     }
 
     @Override
@@ -110,18 +122,18 @@ public class HRApplicantAdapter extends RecyclerView.Adapter<HRApplicantAdapter.
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-
         TextView nameText, matchText;
         Button resumeBtn, shortlistBtn, rejectBtn;
+        ImageButton chatBtn; // New chat button
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             nameText = itemView.findViewById(R.id.applicantName);
             matchText = itemView.findViewById(R.id.matchText);
             resumeBtn = itemView.findViewById(R.id.resumeBtn);
             shortlistBtn = itemView.findViewById(R.id.shortlistBtn);
             rejectBtn = itemView.findViewById(R.id.rejectBtn);
+            chatBtn = itemView.findViewById(R.id.chatBtn); // Initialize chat button
         }
     }
 }

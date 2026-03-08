@@ -11,7 +11,7 @@ import com.example.smartjobrecommendation.utils.SkillMatcher;
 public class JobDetailActivity extends BaseActivity {
 
     TextView title, desc, skills, salary, matchView, degreeView;
-    Button applyBtn;
+    Button applyBtn,chatBtn;
     DatabaseHelper db;
 
     int jobId, userId;
@@ -23,6 +23,20 @@ public class JobDetailActivity extends BaseActivity {
         setContentView(R.layout.activity_job_detail);
 
         initViews();
+        chatBtn = findViewById(R.id.chatBtn);
+
+
+        chatBtn.setOnClickListener(v -> {
+            int hrId = db.getHrIdForJob(jobId);
+            String hrName = db.getUserNameById(hrId);
+
+            Intent intent = new Intent(this, ChatActivity.class);
+            intent.putExtra("currentUserId", userId);
+            intent.putExtra("otherUserId", hrId);
+            intent.putExtra("otherUserName", hrName);
+            intent.putExtra("jobId", jobId);
+            startActivity(intent);
+        });
 
         db = new DatabaseHelper(this);
 
